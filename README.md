@@ -186,7 +186,8 @@ pip install -r requirements.txt
 streamlit run 04_dashboard/app.py
 ```
 
-> ⚠️ 원본 리뷰 데이터는 저작권으로 인해 샘플(50건)만 제공됩니다.
+> ⚠️ 저작권 보호를 위해 원본 리뷰 데이터는 본 레포지토리에 포함하지 않습니다.
+> `01_crawling/` 폴더의 크롤러를 직접 실행하여 데이터를 수집하실 수 있습니다.
 
 ---
 
