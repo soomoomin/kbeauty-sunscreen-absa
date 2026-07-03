@@ -159,7 +159,7 @@ kbeauty-sunscreen-absa/
 
 ---
 
-## ⚙️ 설치 및 실행 (수정필요)
+## ⚙️ 설치 및 실행
 
 ```bash
 # 1. 저장소 클론
@@ -193,15 +193,12 @@ streamlit run 04_dashboard/app.py
 ---
 
 ## 📚 참고문헌
-- Kim, T., Im, I., Park, J., & Bang, Y. (2025). How Does Receipt-Based Consumer Verification Affect Online Reviews? *Asia Pacific Journal of Information Systems*, 35(2), 343-366.
-- 이홍주. "애슬레저 소비자의 재구매 의도 예측: 브랜드 진정성과 스포츠 관여도의 영향." 한국소비자학회 학술대회 2025.4 (2025): 15-15.
-- 신지유, 최화정. "화장품의 온라인 리뷰 정보 특성과 소비자 행동 간의 관계 연구." 한국화장품미용학회지 12.1 (2022): 1-10.
-- 정희원(Heewon Jeong), 정영섭(Young-Seob Jeong). "감성 분석 화장품 사용자 리뷰에 대한 속성기반 감성분석." 한국컴퓨터정보학회 학술발표논문집 32.1 (2024): 13-16.
-- 관세청. (2025). 2025년 1~3분기 화장품 수출입 통계.
-- 식품의약품안전처. (2025). 2024년 화장품 생산·수출입 실적 분석 결과 보도자료.
-
-
-
+- Kim, T., Im, I., Park, J., & Bang, Y. (2025). How does receipt-based consumer verification affect online reviews? *Asia Pacific Journal of Information Systems*, 35(2), 343–366.
+- 이홍주. (2025). 애슬레저 소비자의 재구매 의도 예측: 브랜드 진정성과 스포츠 관여도의 영향. *한국소비자학회 학술대회 발표논문집*, 2025(4), 15.
+- 신지유, 최화정. (2022). 화장품의 온라인 리뷰 정보 특성과 소비자 행동 간의 관계 연구. *한국화장품미용학회지*, 12(1), 1–10.
+- 정희원, 정영섭. (2024). 감성 분석 화장품 사용자 리뷰에 대한 속성기반 감성분석. *한국컴퓨터정보학회 학술발표논문집*, 32(1), 13–16.
+- 관세청. (2025). *2025년 1~3분기 화장품류 수출입 통계* [보도자료]. https://www.customs.go.kr
+- 식품의약품안전처. (2025). *'24년 화장품 생산·수출액, 모두 사상 최대실적 기록* [보도자료]. https://www.mfds.go.kr
 
 ---
 
