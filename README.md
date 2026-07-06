@@ -137,8 +137,7 @@ kbeauty-sunscreen-absa/
 │   └── oliveyoung_global.ipynb      # 글로벌 크롤러 (Selenium)
 │
 ├── 02_preprocessing/
-│   ├── kr_preprocessing.ipynb    # 국내 전처리 + 감성분류
-│   └── gb_preprocessing.ipynb    # 글로벌 전처리 + 감성분류
+│   └── preprocessing_sentiment.ipynb    # 국내 및 글로벌 리뷰 텍스트 정제 + 감성분류
 │
 ├── 03_analysis/
 │   ├── tfidf_analysis.ipynb      # TF-IDF gap 분석
