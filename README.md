@@ -148,11 +148,6 @@ kbeauty-sunscreen-absa/
 ├── 04_dashboard/
 │   └── app.py                    # Streamlit 대시보드
 │
-├── data/
-│   └── sample/
-│       ├── kr_sample.csv         # 샘플 데이터 (50건)
-│       └── gb_sample.csv
-│
 ├── results/
 │   ├── absa_results.csv
 │   └── absa_results_gb.csv
