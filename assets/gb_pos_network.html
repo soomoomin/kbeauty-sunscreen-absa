@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 700px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#5BA4E6", "font": {"color": "#333333"}, "id": "texture + white_cast", "label": "texture + white_cast", "shape": "dot", "size": 18.333333333333332, "title": "texture + white_cast\u003cbr\u003e\uc5f0\uacb0 \uc218=1"}, {"color": "#5BA4E6", "font": {"color": "#333333"}, "id": "lightweight", "label": "lightweight", "shape": "dot", "size": 45.0, "title": "lightweight\u003cbr\u003e\uc5f0\uacb0 \uc218=9"}, {"color": "#5BA4E6", "font": {"color": "#333333"}, "id": "lightweight + white_cast", "label": "lightweight + white_cast", "shape": "dot", "size": 18.333333333333332, "title": "lightweight + white_cast\u003cbr\u003e\uc5f0\uacb0 \uc218=1"}, {"color": "#5BA4E6", "font": {"color": "#333333"}, "id": "texture", "label": "texture", "shape": "dot", "size": 31.666666666666668, "title": "texture\u003cbr\u003e\uc5f0\uacb0 \uc218=5"}, {"color": "#5BA4E6", "font": {"color": "#333333"}, "id": "absorption", "label": "absorption", "shape": "dot", "size": 21.666666666666664, "title": "absorption\u003cbr\u003e\uc5f0\uacb0 \uc218=2"}, {"color": "#5BA4E6", "font": {"color": "#333333"}, "id": "white_cast", "label": "white_cast", "shape": "dot", "size": 35.0, "title": "white_cast\u003cbr\u003e\uc5f0\uacb0 \uc218=6"}, {"color": "#5BA4E6", "font": {"color": "#333333"}, "id": "lightweight + texture", "label": "lightweight + texture", "shape": "dot", "size": 18.333333333333332, "title": "lightweight + texture\u003cbr\u003e\uc5f0\uacb0 \uc218=1"}, {"color": "#5BA4E6", "font": {"color": "#333333"}, "id": "protection", "label": "protection", "shape": "dot", "size": 21.666666666666664, "title": "protection\u003cbr\u003e\uc5f0\uacb0 \uc218=2"}, {"color": "#5BA4E6", "font": {"color": "#333333"}, "id": "greasy", "label": "greasy", "shape": "dot", "size": 21.666666666666664, "title": "greasy\u003cbr\u003e\uc5f0\uacb0 \uc218=2"}, {"color": "#5BA4E6", "font": {"color": "#333333"}, "id": "makeup", "label": "makeup", "shape": "dot", "size": 25.0, "title": "makeup\u003cbr\u003e\uc5f0\uacb0 \uc218=3"}, {"color": "#5BA4E6", "font": {"color": "#333333"}, "id": "sensitive", "label": "sensitive", "shape": "dot", "size": 18.333333333333332, "title": "sensitive\u003cbr\u003e\uc5f0\uacb0 \uc218=1"}, {"color": "#5BA4E6", "font": {"color": "#333333"}, "id": "moisturizing", "label": "moisturizing", "shape": "dot", "size": 18.333333333333332, "title": "moisturizing\u003cbr\u003e\uc5f0\uacb0 \uc218=1"}]);
+                  edges = new vis.DataSet([{"arrows": "to", "color": "rgba(120,120,120,0.5)", "from": "texture + white_cast", "title": "\uc9c0\uc9c0\ub3c4=0.035\u003cbr\u003e\uc2e0\ub8b0\ub3c4=0.584\u003cbr\u003e\ud5a5\uc0c1\ub3c4=1.868", "to": "lightweight", "value": 7.0}, {"arrows": "to", "color": "rgba(120,120,120,0.5)", "from": "lightweight + white_cast", "title": "\uc9c0\uc9c0\ub3c4=0.035\u003cbr\u003e\uc2e0\ub8b0\ub3c4=0.384\u003cbr\u003e\ud5a5\uc0c1\ub3c4=1.818", "to": "texture", "value": 6.90025976586518}, {"arrows": "to", "color": "rgba(120,120,120,0.5)", "from": "texture", "title": "\uc9c0\uc9c0\ub3c4=0.088\u003cbr\u003e\uc2e0\ub8b0\ub3c4=0.416\u003cbr\u003e\ud5a5\uc0c1\ub3c4=1.329", "to": "lightweight", "value": 5.814971734062002}, {"arrows": "to", "color": "rgba(120,120,120,0.5)", "from": "texture", "title": "\uc9c0\uc9c0\ub3c4=0.059\u003cbr\u003e\uc2e0\ub8b0\ub3c4=0.280\u003cbr\u003e\ud5a5\uc0c1\ub3c4=1.168", "to": "white_cast", "value": 5.406649825431793}, {"arrows": "to", "color": "rgba(120,120,120,0.5)", "from": "absorption", "title": "\uc9c0\uc9c0\ub3c4=0.034\u003cbr\u003e\uc2e0\ub8b0\ub3c4=0.409\u003cbr\u003e\ud5a5\uc0c1\ub3c4=1.704", "to": "white_cast", "value": 6.664425055081052}, {"arrows": "to", "color": "rgba(120,120,120,0.5)", "from": "absorption", "title": "\uc9c0\uc9c0\ub3c4=0.037\u003cbr\u003e\uc2e0\ub8b0\ub3c4=0.449\u003cbr\u003e\ud5a5\uc0c1\ub3c4=1.437", "to": "lightweight", "value": 6.072079406371941}, {"arrows": "to", "color": "rgba(120,120,120,0.5)", "from": "white_cast", "title": "\uc9c0\uc9c0\ub3c4=0.048\u003cbr\u003e\uc2e0\ub8b0\ub3c4=0.198\u003cbr\u003e\ud5a5\uc0c1\ub3c4=1.244", "to": "makeup", "value": 5.602699756806746}, {"arrows": "to", "color": "rgba(120,120,120,0.5)", "from": "white_cast", "title": "\uc9c0\uc9c0\ub3c4=0.090\u003cbr\u003e\uc2e0\ub8b0\ub3c4=0.375\u003cbr\u003e\ud5a5\uc0c1\ub3c4=1.200", "to": "lightweight", "value": 5.4900580267158725}, {"arrows": "to", "color": "rgba(120,120,120,0.5)", "from": "lightweight + texture", "title": "\uc9c0\uc9c0\ub3c4=0.035\u003cbr\u003e\uc2e0\ub8b0\ub3c4=0.394\u003cbr\u003e\ud5a5\uc0c1\ub3c4=1.641", "to": "white_cast", "value": 6.5315259923619315}, {"arrows": "to", "color": "rgba(120,120,120,0.5)", "from": "protection", "title": "\uc9c0\uc9c0\ub3c4=0.033\u003cbr\u003e\uc2e0\ub8b0\ub3c4=0.346\u003cbr\u003e\ud5a5\uc0c1\ub3c4=1.640", "to": "texture", "value": 6.529682095086192}, {"arrows": "to", "color": "rgba(120,120,120,0.5)", "from": "protection", "title": "\uc9c0\uc9c0\ub3c4=0.034\u003cbr\u003e\uc2e0\ub8b0\ub3c4=0.364\u003cbr\u003e\ud5a5\uc0c1\ub3c4=1.163", "to": "lightweight", "value": 5.395018116211673}, {"arrows": "to", "color": "rgba(120,120,120,0.5)", "from": "greasy", "title": "\uc9c0\uc9c0\ub3c4=0.045\u003cbr\u003e\uc2e0\ub8b0\ub3c4=0.494\u003cbr\u003e\ud5a5\uc0c1\ub3c4=1.581", "to": "lightweight", "value": 6.399274537258113}, {"arrows": "to", "color": "rgba(120,120,120,0.5)", "from": "greasy", "title": "\uc9c0\uc9c0\ub3c4=0.032\u003cbr\u003e\uc2e0\ub8b0\ub3c4=0.358\u003cbr\u003e\ud5a5\uc0c1\ub3c4=1.491", "to": "white_cast", "value": 6.19851576653751}, {"arrows": "to", "color": "rgba(120,120,120,0.5)", "from": "makeup", "title": "\uc9c0\uc9c0\ub3c4=0.058\u003cbr\u003e\uc2e0\ub8b0\ub3c4=0.365\u003cbr\u003e\ud5a5\uc0c1\ub3c4=1.168", "to": "lightweight", "value": 5.406676899951145}, {"arrows": "to", "color": "rgba(120,120,120,0.5)", "from": "makeup", "title": "\uc9c0\uc9c0\ub3c4=0.037\u003cbr\u003e\uc2e0\ub8b0\ub3c4=0.232\u003cbr\u003e\ud5a5\uc0c1\ub3c4=1.098", "to": "texture", "value": 5.2193620803495335}, {"arrows": "to", "color": "rgba(120,120,120,0.5)", "from": "sensitive", "title": "\uc9c0\uc9c0\ub3c4=0.035\u003cbr\u003e\uc2e0\ub8b0\ub3c4=0.378\u003cbr\u003e\ud5a5\uc0c1\ub3c4=1.209", "to": "lightweight", "value": 5.5134765755206}, {"arrows": "to", "color": "rgba(120,120,120,0.5)", "from": "moisturizing", "title": "\uc9c0\uc9c0\ub3c4=0.041\u003cbr\u003e\uc2e0\ub8b0\ub3c4=0.362\u003cbr\u003e\ud5a5\uc0c1\ub3c4=1.157", "to": "lightweight", "value": 5.3786710260043575}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"nodes": {"shape": "dot", "font": {"size": 15, "face": "Arial"}}, "edges": {"arrows": {"to": {"enabled": true}}, "smooth": {"type": "dynamic"}}, "interaction": {"hover": true, "tooltipDelay": 100}, "physics": {"enabled": true, "stabilization": {"iterations": 300}, "barnesHut": {"gravitationalConstant": -8000, "springLength": 180, "springConstant": 0.02, "damping": 0.6}}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
