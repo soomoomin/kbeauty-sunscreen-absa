@@ -90,7 +90,7 @@ K-뷰티 제품의 글로벌 유통이 확대되면서, 동일 제품에 대해 
 | GB 긍정 | greasy → lightweight | 1.65 |
 | GB 부정 | sticky → texture | 2.94 |
 
-인터랙티브 네트워크 시각화 (클릭해서 직접 노드를 드래그·확대하며 탐색 가능):
+인터랙티브 네트워크 시각화:
 - 국내 KR: [긍정](assets/kr_pos_network.html) · [부정](assets/kr_neg_network.html)
 - 글로벌 GB: [긍정](assets/gb_pos_network.html) · [부정](assets/gb_neg_cooc.html)
 
@@ -134,7 +134,6 @@ K-뷰티 제품의 글로벌 유통이 확대되면서, 동일 제품에 대해 
 kbeauty-sunscreen-absa/
 │
 ├── README.md
-├── requirements.txt
 ├── .gitignore
 ├── LICENSE
 │
