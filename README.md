@@ -16,9 +16,9 @@
 
 ## 📌 프로젝트 개요
 
-K-뷰티 제품의 글로벌 유통이 확대되면서, 동일 제품에 대해 국내·해외 소비자가 실제로 어떤 기준으로 제품을 평가하고 있는지에 대한 실증적 이해의 필요성이 커지고 있습니다. 
+K-뷰티 제품의 글로벌 유통이 확대되면서, 동일 제품에 대해 국내·해외 소비자가 실제로 어떤 기준으로 제품을 평가하고 있는지에 대한 실증적 이해의 필요성이 커지고 있습니다.
 본 프로젝트는 이러한 문제의식에서 출발하여, 국내(올리브영 코리아)와 해외(올리브영 글로벌) 플랫폼에 게재된 동일 선크림 10종의 리뷰 텍스트(국내 10,645건, 해외 6,986건)를 대상으로 소비자 인식의 구조적 차이를 규명하고자 하였습니다.
-기존 평점 중심 분석의 한계를 보완하기 위해, TF-IDF 기반 어휘 격차 분석(Gap Analysis) → N-gram 연쇄 표현 분석 → Apriori 연관 규칙 및 네트워크 시각화 → 속성기반 감성분석(ABSA)의 순서로 분석 프레임워크를 설계하였습니다. 
+기존 평점 중심 분석의 한계를 보완하기 위해, TF-IDF 기반 어휘 격차 분석(Gap Analysis) → N-gram 연쇄 표현 분석 → Apriori 연관 규칙 및 네트워크 시각화 → 속성기반 감성분석(ABSA)의 순서로 분석 프레임워크를 설계하였습니다.
 이는 단어 수준의 차이 발견에서 속성-감성 수준의 정교한 해석으로 점진적으로 심화되는 구조로, 각 단계의 결과가 다음 단계 분석의 근거로 연결되도록 구성하였습니다.
 분석 결과는 Streamlit 기반 인터랙티브 대시보드로 구현하여, 정적인 보고서를 넘어 시장별 소비자 인식 차이를 탐색적으로 확인할 수 있는 형태로 제공하였습니다.
 
@@ -28,14 +28,6 @@ K-뷰티 제품의 글로벌 유통이 확대되면서, 동일 제품에 대해 
 | 분석 제품 | 동일 선크림 10개 제품 |
 | 수집 데이터 | KR 10,645건 / GB 6,986건 (총 17,631건) |
 | 분석 기간 | 2025년 4월 18일 ~ 5월 21일 (약 5주) |
-
----
-
-## 📊 발표 자료
-
-프로젝트 전체 분석 과정과 인사이트를 요약한 발표 슬라이드입니다.
-
-📎 [발표 슬라이드 보기 (PDF)](docs/kbeauty-sunscreen-absa-slides.pdf)
 
 ---
 
@@ -72,7 +64,7 @@ K-뷰티 제품의 글로벌 유통이 확대되면서, 동일 제품에 대해 
                                     📱 Streamlit Dashboard
 ```
 * JWT Auth: 리뷰 노출 개수 제한을 우회하기 위해 인증 토큰을 캡처하여 API 요청에 활용함
-  (본 크롤링은 학술 연구 목적의 일회성 데이터 수집이며, 상업적 재배포 목적이 아님)
+  (본 크롤링은 학술 연구 목적의 1회성 데이터 수집이며, 상업적 재배포 목적이 아님)
 
 ---
 
@@ -85,6 +77,10 @@ K-뷰티 제품의 글로벌 유통이 확대되면서, 동일 제품에 대해 
 | 국내 KR | 끈적임 (+0.033) | 여드름 (-0.016) |
 | 글로벌 GB | white_cast (+0.081) | white_cast (-0.103) |
 
+| 국내 KR | 글로벌 GB |
+|:---:|:---:|
+| ![워드클라우드 KR](assets/wordcloud_kr.png) | ![워드클라우드 GB](assets/wordcloud_gb.png) |
+
 ### 연관규칙 핵심 패턴
 
 | 플랫폼 | 규칙 | Lift |
@@ -93,6 +89,10 @@ K-뷰티 제품의 글로벌 유통이 확대되면서, 동일 제품에 대해 
 | KR 부정 | 민감 → 자극 | 2.10 |
 | GB 긍정 | greasy → lightweight | 1.65 |
 | GB 부정 | sticky → texture | 2.94 |
+
+인터랙티브 네트워크 시각화 (클릭해서 직접 노드를 드래그·확대하며 탐색 가능):
+- 국내 KR: [긍정](assets/kr_pos_network.html) · [부정](assets/kr_neg_network.html)
+- 글로벌 GB: [긍정](assets/gb_pos_network.html) · [부정](assets/gb_neg_cooc.html)
 
 ### ABSA 전체 평균 속성 점수
 
@@ -103,11 +103,16 @@ K-뷰티 제품의 글로벌 유통이 확대되면서, 동일 제품에 대해 
 
 ---
 
-## 📸 대시보드 스크린샷
+## 🖥 대시보드
 
 > 제품별 레이더차트 · KR/GB 탭 전환 · 자동 인사이트 · 올리브영 구매링크
 
 ![Dashboard Screenshot](assets/dashboard_screenshot.png)
+
+이 저장소의 `04_dashboard/app.py`는 실제 배포된 버전의 스냅샷입니다. 최신 버전과 실시간 데모는 아래에서 확인하실 수 있습니다.
+
+- 🔗 라이브 데모: https://ksunscreen-absa-dashboard.streamlit.app
+- 🔗 대시보드 전용 레포: https://github.com/soomoomin/ksunscreen-absa-dashboard
 
 ---
 
@@ -131,22 +136,23 @@ kbeauty-sunscreen-absa/
 ├── README.md
 ├── requirements.txt
 ├── .gitignore
+├── LICENSE
 │
 ├── 01_crawling/
-│   ├── oliveyoung_kr.ipynb          # 국내 크롤러 (JWT + API)
-│   └── oliveyoung_global.ipynb      # 글로벌 크롤러 (Selenium)
+│   ├── oliveyoung_kr_crawler.ipynb   # 국내 크롤러 (JWT + API)
+│   └── oliveyoung_gb_crawler.ipynb   # 글로벌 크롤러 (Selenium)
 │
 ├── 02_preprocessing/
-│   └── preprocessing_sentiment.ipynb    # 국내 및 글로벌 리뷰 텍스트 정제 + 감성분류
+│   └── preprocessing_sentiment.ipynb   # 국내·글로벌 리뷰 텍스트 정제 + 감성분류
 │
 ├── 03_analysis/
-│   ├── tfidf_analysis.ipynb      # TF-IDF gap 분석
-│   ├── ngram_analysis.ipynb      # N-gram 표현 패턴
-│   ├── association_rules.ipynb   # 연관규칙 + 네트워크
-│   └── absa_analysis.ipynb       # ABSA 속성 점수 산출
+│   ├── tfidf_analysis.ipynb          # TF-IDF gap 분석
+│   ├── ngram_analysis.ipynb          # N-gram 표현 패턴
+│   ├── association_rules.ipynb       # 연관규칙 + 네트워크
+│   └── absa_analysis.ipynb           # ABSA 속성 점수 산출
 │
 ├── 04_dashboard/
-│   └── app.py                    # Streamlit 대시보드
+│   └── app.py                        # Streamlit 대시보드 (배포 버전 스냅샷)
 │
 ├── results/
 │   ├── absa_results.csv
@@ -154,9 +160,12 @@ kbeauty-sunscreen-absa/
 │
 └── assets/
     ├── dashboard_screenshot.png
-    ├── radar_chart.png
     ├── wordcloud_kr.png
-    └── network_visualization.png
+    ├── wordcloud_gb.png
+    ├── kr_pos_network.html
+    ├── kr_neg_network.html
+    ├── gb_pos_network.html
+    └── gb_neg_cooc.html
 ```
 
 ---
@@ -180,8 +189,7 @@ pip install -r requirements.txt
 streamlit run 04_dashboard/app.py
 ```
 
-> ⚠️ 저작권 보호를 위해 원본 리뷰 데이터는 본 레포지토리에 포함하지 않습니다.
-> `01_crawling/` 폴더의 크롤러를 직접 실행하여 데이터를 수집하실 수 있습니다.
+> ⚠️ 저작권 보호를 위해 원본 리뷰 데이터는 본 저장소에 포함하지 않습니다. `01_crawling/`의 크롤러를 직접 실행하여 데이터를 수집하실 수 있습니다.
 
 ---
 
@@ -196,6 +204,7 @@ streamlit run 04_dashboard/app.py
 ---
 
 ## 📚 참고문헌
+
 - Kim, T., Im, I., Park, J., & Bang, Y. (2025). How does receipt-based consumer verification affect online reviews? *Asia Pacific Journal of Information Systems*, 35(2), 343–366.
 - 이홍주. (2025). 애슬레저 소비자의 재구매 의도 예측: 브랜드 진정성과 스포츠 관여도의 영향. *한국소비자학회 학술대회 발표논문집*, 2025(4), 15.
 - 신지유, 최화정. (2022). 화장품의 온라인 리뷰 정보 특성과 소비자 행동 간의 관계 연구. *한국화장품미용학회지*, 12(1), 1–10.
@@ -206,9 +215,9 @@ streamlit run 04_dashboard/app.py
 ---
 
 ## 👩‍💻 Contact
-**박수연 (Sue Park)**  
-K-Digital Training · 데이터 분석 과정  
-📧 its.sue.park@gmail.com  
+**박수연 (Sue Park)**
+K-Digital Training · 데이터 분석 과정
+📧 its.sue.park@gmail.com
 🔗 www.linkedin.com/in/su-yeon-park-652316335
 
 ---
